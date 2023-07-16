@@ -24,7 +24,7 @@ export class DataTableProcessosComponent extends Component {
             macroDataTermino: null,
             macroStatus: null,
             macroClassificacao: null,
-            macroAno: null,   
+            macroAno: null,
             // form classificação
             classificacaoDescricao: null,
             // form Processo
@@ -35,21 +35,21 @@ export class DataTableProcessosComponent extends Component {
             processoDataTermino: null,
             processoStatus: null,
             processoClassificacao: null,
-            processoAno: null,  
-            
+            processoAno: null,
+
             // Listas
             classificacoes: [],
             macroProcessos: [],
             processos: [],
-            
+
             displayModalCadastrarClassificacao: false,
             displayModalCadastrarProcesso: false,
             displayModalCadastrarMacroProcesso: false,
-                        
+
             displayModalEditar: false,
-            displayModalConfirmar: false,            
+            displayModalConfirmar: false,
             position: 'center'
-        };        
+        };
     }
 
     salvarClassificacao() {
@@ -58,7 +58,7 @@ export class DataTableProcessosComponent extends Component {
     }
 
     salvarMacroProcesso() {
-        console.log(this.state.dataInicio)   
+        console.log(this.state.dataInicio)
         let macroProcesso = {
             numero: this.state.numero,
             nome: this.state.nome,
@@ -68,7 +68,7 @@ export class DataTableProcessosComponent extends Component {
             status: this.state.status,
             classificacao: this.state.classificacao,
             ano: this.state.ano
-        } 
+        }
         const newList = this.state.macroProcessos.concat(macroProcesso);
         this.state.macroProcessos = newList;
         this.limparForm();
@@ -82,29 +82,29 @@ export class DataTableProcessosComponent extends Component {
 
     limparForm() {
         this.state.numero =
-        this.state.nome =
-        this.state.descricao =
-        this.state.dataInicio =
-        this.state.dataTermino =
-        this.state.status =
-        this.state.classificacao =
-        this.state.ano = null;
+            this.state.nome =
+            this.state.descricao =
+            this.state.dataInicio =
+            this.state.dataTermino =
+            this.state.status =
+            this.state.classificacao =
+            this.state.ano = null;
     }
 
-    openModal(name) {        
+    openModal(name) {
         let state = {
             [`${name}`]: true
         };
 
         this.setState(state);
-    }        
-    
+    }
+
     closeModal(name) {
         this.setState({
             [`${name}`]: false
         });
     }
-    
+
     renderFooter(name) {
         return (
             <div>
@@ -140,108 +140,93 @@ export class DataTableProcessosComponent extends Component {
             </div>
         );
     }
-    
+
     render() {
-        return (            
+        return (
             <div className="grid">
-                {/* Tabela Classificações*/}
+                
+                {/* Tabela Operador*/}
                 <div className="col-1"></div>
                 <div className="col-2">
-                    <Button label="Cadastrar Classificação" className="p-button-raised p-button-success" onClick={() => this.openModal('displayModalCadastrarClassificacao')}/>
+                    <Button label="Cadastrar" className="p-button-raised p-button-success" onClick={() => this.openModal('displayModalCadastrarMacroProcesso')} />
                 </div>
-                <div className="col-9"></div>                
-                <div className="col-1"></div>
-                <div className="card col-10">
-                    <DataTable value={this.state.classificacoes} header='Classificações'>                        
-                        <Column field="descricao" header="Descrição"></Column>                                                                     
-                        <Column body={
-                            <div className="grid">
-                            <div className="col-4">
-                                <Button type="button" icon="pi pi-pencil" className="p-button-warning" onClick={() => this.openModal('displayModalCadastrar')}></Button>
-                            </div>
-                            <div className="col-1"></div>
-                            <div className="col-4">
-                                <Button type="button" icon="pi pi-trash" className="p-button-danger" onClick={() => this.openModal('displayModalConfirmar')}></Button>
-                            </div>
-                        </div>
-                        } headerStyle={{width: '8em', textAlign: 'center'}} bodyStyle={{textAlign: 'center', overflow: 'visible'}} />
-                    </DataTable>            
-                </div>
-                <div className="col-1"></div>
 
-                {/* Tabela Macro Processos*/}
-                <div className="col-1"></div>
-                <div className="col-2">
-                    <Button label="Cadastrar Macro Processo" className="p-button-raised p-button-success" onClick={() => this.openModal('displayModalCadastrarMacroProcesso')}/>
-                </div>
-                <div className="col-9"></div>                
-                <div className="col-1"></div>
-                <div className="card col-10">
-                    <DataTable value={this.state.macroProcessos} header='Macro Processos'>                                             
-                        <Column field="numero" header="Numero"></Column>
-                        <Column field="nome" header="Nome"></Column>
-                        <Column field="descricao" header="Descrição"></Column>
-                        
-                        <Column field="dataTermino" header="Fim"></Column>
-                        <Column field="status" header="Status"></Column>
-                        <Column field="classificacao" header="Classificação"></Column>
-                        <Column field="ano" header="Ano"></Column>                                                
-                        <Column body={
-                            <div className="grid">
-                            <div className="col-4">
-                                <Button type="button" icon="pi pi-pencil" className="p-button-warning" onClick={() => this.openModal('displayModalCadastrar')}></Button>
-                            </div>
-                            <div className="col-1"></div>
-                            <div className="col-4">
-                                <Button type="button" icon="pi pi-trash" className="p-button-danger" onClick={() => this.openModal('displayModalConfirmar')}></Button>
-                            </div>
-                        </div>
-                        } headerStyle={{width: '8em', textAlign: 'center'}} bodyStyle={{textAlign: 'center', overflow: 'visible'}} />
-                    </DataTable>            
-                </div>
-                <div className="col-1"></div>
+    
 
-                {/* Tabela Processos*/}
-                <div className="col-1"></div>
-                <div className="col-2">
-                    <Button label="Cadastrar processo" className="p-button-raised p-button-success" onClick={() => this.openModal('displayModalCadastrarProcesso')}/>
-                </div>
+
                 <div className="col-9"></div>
                 <div className="col-1"></div>
                 <div className="card col-10">
-                    <DataTable value={this.state.processos} header='Processos' className="p-datatable-customers">                                             
-                        <Column field="numero" header="Numero"></Column>
-                        <Column field="nome" header="Nome"></Column>
-                        <Column field="descricao" header="Descrição"></Column>
+
+
+                    <li className="flex align-items-center py-3 px-2 border-top-1 border-300 flex-wrap">
+
+                        <div className="text-500 w-3 md:w-3 font-medium">
+                            <label htmlFor="inicio" className="block text-900 font-medium mb-2">Data Inicio</label>
+                            <InputText id="inicio" type="text" placeholder="Data inicio" className="w-full mb-3" />
+                        </div>
+
+                        <div className="text-500 w-3 md:w-3 font-medium">
+                            <label htmlFor="fim" className="block text-900 font-medium mb-2">Data de Fim</label>
+                            <InputText id="fim" type="text" placeholder="Data de fim" className="w-full mb-3" />
+                        </div>
+
+                        <div className="text-500 w-3 md:w-3 font-medium">
+                            <label htmlFor="nomeoperador" className="block text-900 font-medium mb-2">Nome do doperador</label>
+                            <InputText id="nomeoperador" type="text" placeholder="Nome do operador" className="w-full mb-3" />
+                        </div>
+
+                    </li>
+
+                    <div className="col-2">
+                    <Button label="Pesquisar" className="p-button-raised p-button-success" />
+                    </div>
+
+
+                    <li className="flex align-items-center py-3 px-2 border-top-1 border-300 flex-wrap">
+
                         
-                        <Column field="dataTermino" header="Fim"></Column>
-                        <Column field="status" header="Status"></Column>
-                        <Column field="classificacao" header="Classificação"></Column>
-                        <Column field="ano" header="Ano"></Column>                                                
+
+
+                        <div className="text-500 w-3 md:w-3 font-medium">Saldo total: </div>
+                        <div className="text-900 w-full md:w-2 md:flex-order-0 flex-order-1">$250,00</div>
+
+                        <div className="text-500 w-3 md:w-3 font-medium">Saldo no período: </div>
+                        <div className="text-900 w-full md:w-2 md:flex-order-0 flex-order-1">$250,00</div>
+
+
+                    </li>
+
+
+                    <DataTable value={this.state.macroProcessos}>
+                        <h1>'teste'</h1>
+                        <Column field="dados" header="Dados"></Column>
+                        <Column field="valencia" header="Valencia"></Column>
+                        <Column field="tipo" header="Tipo"></Column>
+                        <Column field="nomeOperador" header="Nome do Operador"></Column>
                         <Column body={
                             <div className="grid">
-                            <div className="col-4">
-                                <Button type="button" icon="pi pi-pencil" className="p-button-warning" onClick={() => this.openModal('displayModalCadastrar')}></Button>
+                                <div className="col-4">
+                                    <Button type="button" icon="pi pi-pencil" className="p-button-warning" onClick={() => this.openModal('displayModalCadastrar')}></Button>
+                                </div>
+                                <div className="col-1"></div>
+                                <div className="col-4">
+                                    <Button type="button" icon="pi pi-trash" className="p-button-danger" onClick={() => this.openModal('displayModalConfirmar')}></Button>
+                                </div>
                             </div>
-                            <div className="col-1"></div>
-                            <div className="col-4">
-                                <Button type="button" icon="pi pi-trash" className="p-button-danger" onClick={() => this.openModal('displayModalConfirmar')}></Button>
-                            </div>
-                        </div>
-                        } headerStyle={{width: '8em', textAlign: 'center'}} bodyStyle={{textAlign: 'center', overflow: 'visible'}} />
-                    </DataTable>            
+                        } headerStyle={{ width: '8em', textAlign: 'center' }} bodyStyle={{ textAlign: 'center', overflow: 'visible' }} />
+                    </DataTable>
                 </div>
                 <div className="col-1"></div>
-
 
                 {/* Modal cadastrar classificação*/}
                 <Dialog header="Cadastrar Classificação" visible={this.state.displayModalCadastrarClassificacao} style={{ width: '50vw' }} footer={this.renderFooterModalCadastrarClassificacao()} onHide={() => this.closeModal('displayModalCadastrarClassificacao')}>
                     <div className="form">
-                        <div className="p-fluid p-formgrid grid">                            
+                        <div className="p-fluid p-formgrid grid">
                             <div className="p-field col-12">
-                                <label htmlFor="descricao">Descrição</label>        
-                                <InputTextarea id="descricao" rows={4} cols={30} value={this.state.descricao} onChange={(e) => this.setState({descricao: e.target.value})} autoResize />
-                            </div>                                                      
+                                <label htmlFor="descricao">Descrição</label>
+                                <InputTextarea id="descricao" rows={4} cols={30} value={this.state.descricao} onChange={(e) => this.setState({ descricao: e.target.value })} autoResize />
+                            </div>
                         </div>
                     </div>
                 </Dialog>
@@ -252,36 +237,36 @@ export class DataTableProcessosComponent extends Component {
                         <div className="p-fluid p-formgrid grid">
                             <div className="p-field col-6">
                                 <label htmlFor="numero">Numero</label>
-                                <InputNumber id="numero" value={this.state.numero} onValueChange={(e) => this.setState({numero: e.target.value})} useGrouping={false}/>
+                                <InputNumber id="numero" value={this.state.numero} onValueChange={(e) => this.setState({ numero: e.target.value })} useGrouping={false} />
                             </div>
                             <div className="p-field col-6">
                                 <label htmlFor="nome">Nome</label>
-                                <InputText id="nome" value={this.state.nome} onChange={(e) => this.setState({nome: e.target.value})} />
+                                <InputText id="nome" value={this.state.nome} onChange={(e) => this.setState({ nome: e.target.value })} />
                             </div>
                             <div className="p-field col-12">
-                                <label htmlFor="descricao">Descrição</label>        
-                                <InputTextarea id="descricao" rows={4} cols={30} value={this.state.descricao} onChange={(e) => this.setState({descricao: e.target.value})} autoResize />
+                                <label htmlFor="descricao">Descrição</label>
+                                <InputTextarea id="descricao" rows={4} cols={30} value={this.state.descricao} onChange={(e) => this.setState({ descricao: e.target.value })} autoResize />
                             </div>
                             <div className="p-field col-6">
-                                <label htmlFor="dataInicio">Data inicio</label>        
-                                <Calendar id="dataInicio" value={this.state.dataInicio} onChange={(e) => this.setState({dataInicio: e.target.value})} />
+                                <label htmlFor="dataInicio">Data inicio</label>
+                                <Calendar id="dataInicio" value={this.state.dataInicio} onChange={(e) => this.setState({ dataInicio: e.target.value })} />
                             </div>
                             <div className="p-field col-6">
                                 <label htmlFor="dataTermino">Data termino</label>
-                                <Calendar id="dataTermino" value={this.state.dataTermino} onChange={(e) => this.setState({dataTermino: e.target.value})} />                                
+                                <Calendar id="dataTermino" value={this.state.dataTermino} onChange={(e) => this.setState({ dataTermino: e.target.value })} />
                             </div>
                             <div className="p-field col">
                                 <label htmlFor="status">Status</label>
-                                <InputNumber id="status" value={this.state.status} onValueChange={(e) => this.setState({status: e.target.value})} useGrouping={false}/>
+                                <InputNumber id="status" value={this.state.status} onValueChange={(e) => this.setState({ status: e.target.value })} useGrouping={false} />
                             </div>
                             <div className="p-field col">
                                 <label htmlFor="classificacao">Classificação</label>
-                                <InputNumber id="classificacao" value={this.state.classificacao} onValueChange={(e) => this.setState({classificacao: e.target.value})} useGrouping={false}/>
+                                <InputNumber id="classificacao" value={this.state.classificacao} onValueChange={(e) => this.setState({ classificacao: e.target.value })} useGrouping={false} />
                             </div>
-                            <div className="p-field col">                               
+                            <div className="p-field col">
                                 <label htmlFor="ano">Ano</label>
-                                <InputNumber id="ano" value={this.state.ano} onValueChange={(e) => this.setState({ano: e.target.value})} useGrouping={false}/>
-                            </div>                            
+                                <InputNumber id="ano" value={this.state.ano} onValueChange={(e) => this.setState({ ano: e.target.value })} useGrouping={false} />
+                            </div>
                         </div>
                     </div>
                 </Dialog>
@@ -292,55 +277,55 @@ export class DataTableProcessosComponent extends Component {
                         <div className="p-fluid p-formgrid grid">
                             <div className="p-field col-6">
                                 <label htmlFor="numero">Numero</label>
-                                <InputNumber id="numero" value={this.state.numero} onValueChange={(e) => this.setState({numero: e.target.value})} useGrouping={false}/>
+                                <InputNumber id="numero" value={this.state.numero} onValueChange={(e) => this.setState({ numero: e.target.value })} useGrouping={false} />
                             </div>
                             <div className="p-field col-6">
                                 <label htmlFor="nome">Nome</label>
-                                <InputText id="nome" value={this.state.nome} onChange={(e) => this.setState({nome: e.target.value})} />
+                                <InputText id="nome" value={this.state.nome} onChange={(e) => this.setState({ nome: e.target.value })} />
                             </div>
                             <div className="p-field col-12">
-                                <label htmlFor="descricao">Descrição</label>        
-                                <InputTextarea id="descricao" rows={4} cols={30} value={this.state.descricao} onChange={(e) => this.setState({descricao: e.target.value})} autoResize />
+                                <label htmlFor="descricao">Descrição</label>
+                                <InputTextarea id="descricao" rows={4} cols={30} value={this.state.descricao} onChange={(e) => this.setState({ descricao: e.target.value })} autoResize />
                             </div>
                             <div className="p-field col-6">
-                                <label htmlFor="dataInicio">Data inicio</label>        
-                                <Calendar id="dataInicio" value={this.state.dataInicio} onChange={(e) => this.setState({dataInicio: e.target.value})} />
+                                <label htmlFor="dataInicio">Data inicio</label>
+                                <Calendar id="dataInicio" value={this.state.dataInicio} onChange={(e) => this.setState({ dataInicio: e.target.value })} />
                             </div>
                             <div className="p-field col-6">
                                 <label htmlFor="dataTermino">Data termino</label>
-                                <Calendar id="dataTermino" value={this.state.dataTermino} onChange={(e) => this.setState({dataTermino: e.target.value})} />                                
+                                <Calendar id="dataTermino" value={this.state.dataTermino} onChange={(e) => this.setState({ dataTermino: e.target.value })} />
                             </div>
                             <div className="p-field col">
                                 <label htmlFor="status">Status</label>
-                                <InputNumber id="status" value={this.state.status} onValueChange={(e) => this.setState({status: e.target.value})} useGrouping={false}/>
+                                <InputNumber id="status" value={this.state.status} onValueChange={(e) => this.setState({ status: e.target.value })} useGrouping={false} />
                             </div>
                             <div className="p-field col">
                                 <label htmlFor="classificacao">Classificação</label>
-                                <InputNumber id="classificacao" value={this.state.classificacao} onValueChange={(e) => this.setState({classificacao: e.target.value})} useGrouping={false}/>
+                                <InputNumber id="classificacao" value={this.state.classificacao} onValueChange={(e) => this.setState({ classificacao: e.target.value })} useGrouping={false} />
                             </div>
-                            <div className="p-field col">                               
+                            <div className="p-field col">
                                 <label htmlFor="ano">Ano</label>
-                                <InputNumber id="ano" value={this.state.ano} onValueChange={(e) => this.setState({ano: e.target.value})} useGrouping={false}/>
-                            </div>                            
+                                <InputNumber id="ano" value={this.state.ano} onValueChange={(e) => this.setState({ ano: e.target.value })} useGrouping={false} />
+                            </div>
                         </div>
                     </div>
                 </Dialog>
 
-                {/* Modal editar Processos */}                
+                {/* Modal editar Processos */}
                 <Dialog header="Editar Processo" visible={this.state.displayModalEditar} style={{ width: '50vw' }} footer={this.renderFooter('displayModalEditar')} onHide={() => this.closeModal('displayModalEditar')}>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </Dialog>  
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </Dialog>
 
-                {/* Modal Confirmar */}                
+                {/* Modal Confirmar */}
                 <Dialog header="Confirmar" visible={this.state.displayModalConfirmar} modal style={{ width: '350px' }} footer={this.renderFooter('displayModalConfirmar')} onHide={() => this.onHide('displayModalConfirmar')}>
-                        <div className="confirmation-content">
-                            <i className="pi pi-exclamation-triangle p-mr-3" style={{ fontSize: '2rem' }} />
-                            <span>Tem certeza que deseja continuar?</span>
-                        </div>
-                    </Dialog>
+                    <div className="confirmation-content">
+                        <i className="pi pi-exclamation-triangle p-mr-3" style={{ fontSize: '2rem' }} />
+                        <span>Tem certeza que deseja continuar?</span>
+                    </div>
+                </Dialog>
             </div>
         );
     }
